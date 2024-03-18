@@ -1,0 +1,235 @@
+{
+  "name": "InboundOrder",
+  "displayName": "inbound_order",
+  "description": "Contains inforamation about inbound orders into your companies locations. For example, for example, purchase orders (POs), blanket POs, production orders, or stock transfer orders).",
+  "entityType": "transactional",
+  "category": "inbound",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Referred by other objects as 'order_id' unless explicitly stated"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "order_creation_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "order_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of order. E.g. BlanketPO, ReplenishmentPO, StockTransfer, LongTermBuy (has no product), ProductionOrder\n\n'Reserved' values for ASC 2022: \n“PO\": Purchase Order\n\"TO\": Transfer Order\n\"BO\": Blanket Order\n\"CO\": Consumption Order\n\"PR\": Purchase Requisition\n\"RFQ\": Request for Quote\n\"\": Null is also acceptable; \n\nUsage is determined by apps and customers\nCustomers can also populate their own values.\n\nNotes on specific order types: \nconsumption_order: a type of order that will be used to consume raw material in order to produce finished goods. Given ASC does not support MRP, these will be provided by customer and be used by ASC Inventory Projection to reduce inventory\nproduction_order: a type of order that represents finished goods produced, after consumption of raw material. These goods appear at the site"
+    },
+    {
+      "name": "order_status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of the order. E.g. Planned (not send to vendor), Submitted (sent to vendor), Confirmed, Complete\n\n'Reserved' values for ASC 2022: \n\"Cancelled\" \n\"Open\" \n\"Closed\" \n\"InTransit\" \n\"Confirmed\" \n\"\": Null is also acceptable; \nUsage is determined by apps and customers\nCustomers can also populate their own values."
+    },
+    {
+      "name": "to_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Site into which order will arrive.",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "tpartner_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Partner to which order is sent. E.g. for PO, this will be vendors",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "order_currency_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Currency UOM for Company"
+    },
+    {
+      "name": "vendor_currency_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Currency UOM of vendor"
+    },
+    {
+      "name": "exchange_rate",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Exchange rate used for conversion"
+    },
+    {
+      "name": "exchange_rate_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date and time when exchange rate was calculate"
+    },
+    {
+      "name": "incoterm",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "3 letter incoterm code"
+    },
+    {
+      "name": "incoterm2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Place of ownership transfer"
+    },
+    {
+      "name": "incoterm_location_1",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Incoterm location 1. Can be a site_id or the location used on order/EDI"
+    },
+    {
+      "name": "incoterm_location_2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Incoterm location 2. Can be a site_id or the location used on order/EDI"
+    },
+    {
+      "name": "submitted_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date and time when order was submitted to vendor"
+    },
+    {
+      "name": "agreement_start_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "If PO is associated with contract or agreement, then start datetime of contract"
+    },
+    {
+      "name": "agreement_end_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "If PO is associated with contract  or agreement, then end datetime of contract"
+    },
+    {
+      "name": "shipping_instr_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Code for shipping instructions."
+    },
+    {
+      "name": "payment_terms_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Code for payment terms"
+    },
+    {
+      "name": "std_terms_agreement",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Agreement between company and vendor"
+    },
+    {
+      "name": "std_terms_agreement_ver",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Version of agreement between company and vendor"
+    },
+    {
+      "name": "agreement_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Number associated with contract or agreement"
+    },
+    {
+      "name": "inbound_order_url",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "URL to access inbound order record in source system"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source of data"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "source_update_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date time stamp of the update made in the source system (SAP etc)."
+    },
+    {
+      "name": "source_event_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of the event created in the source system. Example: PO Receipt, Shipment schedule etc"
+    }
+  ]
+}

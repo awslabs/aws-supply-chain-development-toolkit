@@ -1,0 +1,290 @@
+{
+  "name": "Forecast",
+  "displayName": "forecast",
+  "description": "Stores forecast over forecast horizon for product, product-site, or other combinations.",
+  "entityType": "transactional",
+  "category": "forecast",
+  "fields": [
+    {
+      "name": "snapshot_date",
+      "type": "timestamp",
+      "required": true,
+      "primaryKey": true,
+      "description": "Date upto when data was captured to generate forecasts"
+    },
+    {
+      "name": "creation_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when forecast was created"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by Galaxy."
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": true,
+      "primaryKey": true,
+      "description": "Forecasts would be at one level - either most granular level (product) or product group level. \n\n*For 2022, we are expecting only product level forecasts",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "region_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": true,
+      "primaryKey": true,
+      "description": "Maps to company's geographical region aka geo_id.",
+      "foreignKey": {
+        "category": "org",
+        "entity": "geography",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_group_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product_hierarchy",
+        "field": "id"
+      }
+    },
+    {
+      "name": "prod_agg_type",
+      "type": "string",
+      "default": "product",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of forecast aggregation used for product dimension: e.g. product or product group"
+    },
+    {
+      "name": "reg_agg_type",
+      "type": "string",
+      "default": "national",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of forecast aggregation used for product dimension: e.g. site, region, or national"
+    },
+    {
+      "name": "mean",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "p10",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "p50",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "p90",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "forecast_start_dttm",
+      "type": "timestamp",
+      "required": true,
+      "primaryKey": false,
+      "description": "Start date time for forecast."
+    },
+    {
+      "name": "forecast_end_dttm",
+      "type": "timestamp",
+      "required": true,
+      "primaryKey": false,
+      "description": "End date time for forecast. When forecast end date is same as forecast start date of subsequent forecast (for same key), the forecast end date is treated as exclusive (i.e. less than)."
+    },
+    {
+      "name": "default_price",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Default MSRP of the product that is forecasted. Price is per currency UOM listed in products table"
+    },
+    {
+      "name": "forecast_price",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Price at which the ASIN was forecasted to be sold"
+    },
+    {
+      "name": "num_causals",
+      "type": "int",
+      "required": false,
+      "primaryKey": false,
+      "description": "Number of causals applied to forecast. Details of causals are to be in forecasting system"
+    },
+    {
+      "name": "causal_start",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "causal_end",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "user_override",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "User override of forecast quantity. This will replace forecast distribution with a point value. In future we can allow overrides to be distribution as well"
+    },
+    {
+      "name": "user_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of user that overrode forecast"
+    },
+    {
+      "name": "act_qty",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Actual order quantity sold in the forecast period. Stored for reference"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source of data. E.g. ADP or Customer"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "quantity_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity unit of measure"
+    },
+    {
+      "name": "channel_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unique identifier for a specific channel. Corresponds to channel_id in the outbound_order_line dataset"
+    },
+    {
+      "name": "tpartner_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "customer identification",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "user_override_p10",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "user_override_p50",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "user_override_p90",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "postal_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "tpartner_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    }
+  ]
+}

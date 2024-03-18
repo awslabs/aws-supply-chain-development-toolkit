@@ -1,0 +1,235 @@
+{
+  "name": "ProductBOM",
+  "displayName": "product_bom",
+  "description": "product_bom",
+  "entityType": "non_transactional",
+  "category": "planning",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Referred by other objects as 'bom_id' unless explicitly stated"
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Parent product",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by Galaxy."
+    },
+    {
+      "name": "level",
+      "type": "int",
+      "required": false,
+      "primaryKey": false,
+      "description": "Level for the BOM, incase of a multi-level BOM. It can be inferred by creating the BOM-tree"
+    },
+    {
+      "name": "component_product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "component_quantity_per",
+      "type": "double",
+      "required": true,
+      "primaryKey": false,
+      "description": "Quantity of component needed to produce one unit of parent product. Quantity is always in eaches (which is same as units)"
+    },
+    {
+      "name": "component_quantity_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "component_line_number",
+      "type": "int",
+      "required": false,
+      "primaryKey": false,
+      "description": "Line ID for child record"
+    },
+    {
+      "name": "lifecycle_phase",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Information about the life-cycle phase associated with this part of the BOM"
+    },
+    {
+      "name": "assembly_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "assembly_cost_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Site associated with the product's BOM",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "bom_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of BOM Eg : Engineering, Purchasing, Manufacturing "
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Description associated with the BOM "
+    },
+    {
+      "name": "production_process_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID associated with specific production process ",
+      "foreignKey": {
+        "category": "operation",
+        "entity": "production_process",
+        "field": "production_process_id"
+      }
+    },
+    {
+      "name": "alternative_product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of the alternate product used in the BOM",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product_alternate",
+        "field": "product_alternate_id"
+      }
+    },
+    {
+      "name": "priority",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Priority of the product or components used in BOM"
+    },
+    {
+      "name": "alternate_group_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of the alternate product group"
+    },
+    {
+      "name": "alternate_product_qty",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Qty of the alternate product used in the BOM"
+    },
+    {
+      "name": "alternate_product_qty_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "UOM associated with the Qty of the alternate product "
+    },
+    {
+      "name": "ratio",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "ratio of the products in the BOM"
+    },
+    {
+      "name": "creation_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when the BOM was created"
+    },
+    {
+      "name": "change_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when the BOM was changed or updated"
+    }
+  ]
+}

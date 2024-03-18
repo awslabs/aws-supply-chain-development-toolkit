@@ -1,0 +1,131 @@
+{
+  "name": "Geography",
+  "displayName": "geography",
+  "description": "Entity stores geographical hierarchy of your company.",
+  "entityType": "non_transactional",
+  "category": "org",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Referred by other objects as 'geo_id' unless explicitly stated"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by Galaxy."
+    },
+    {
+      "name": "parent_geo_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "If blank, this is the top level region in the company.",
+      "foreignKey": {
+        "category": "org",
+        "entity": "geography",
+        "field": "id"
+      }
+    },
+    {
+      "name": "address_1",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "address_2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "address_3",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "city",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "state_prov",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "postal_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "phone_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "time_zone",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    }
+  ]
+}

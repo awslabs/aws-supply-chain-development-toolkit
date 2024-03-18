@@ -1,0 +1,347 @@
+{
+  "name": "Product",
+  "displayName": "product",
+  "description": "Contains the key product attributes, including name, description, brand, codes, category, business group, and price.",
+  "entityType": "non_transactional",
+  "category": "product",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "All products are assumed to be discrete and in eaches; cases (and later cartons, pallets etc) are converted \nReferred by other objects as 'product_id' unless explicitly stated"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": true,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by Galaxy."
+    },
+    {
+      "name": "product_group_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product_hierarchy",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of product. E.g. 'Finished Good', 'Component', 'Service', 'Packaging'\nCan be user-defined"
+    },
+    {
+      "name": "thumbnail_url",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "URL for product image"
+    },
+    {
+      "name": "hts_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "is_hazmat",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "is_flammable",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "is_special_handling",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "is_perishable",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "is_digital",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "is_deleted",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "This is a Boolean value represented by 'N' or 'Y'. 'N' is active products"
+    },
+    {
+      "name": "is_lot_controlled",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "is_expiry_controlled",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "creation_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when product was launched or released"
+    },
+    {
+      "name": "brand_name",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "parent_product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "If the product is part of a bundle, and links to a parent product, then list the parent id. Note that bundles are separate from product/product groups",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "display_desc",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "External facing description of product"
+    },
+    {
+      "name": "discontinue_day",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when product was discontinued or is planned to be discontinued"
+    },
+    {
+      "name": "base_uom",
+      "type": "string",
+      "default": "Eaches",
+      "required": false,
+      "primaryKey": false,
+      "description": "Default value is Eaches. Non-discrete products (e.g. powders, metals) can use other values."
+    },
+    {
+      "name": "unit_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Average unit cost of product. Measured in currency_uom per base_uom"
+    },
+    {
+      "name": "unit_price",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unit Price or standard price or MSRP of product. Note that in future, this may be extended as Price can vary based on marketplace, time-of-sale."
+    },
+    {
+      "name": "inventory_holding_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Average yearly holding cost of product. Measured in currency_uom per base_uom"
+    },
+    {
+      "name": "currency_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "UOM for MSRP."
+    },
+    {
+      "name": "product_available_day",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when product was available to be fulfilled. Can be after product was created"
+    },
+    {
+      "name": "shipping_weight",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Default weight to be used by carrier"
+    },
+    {
+      "name": "shipping_dimension",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Dimensional weight to be used by carrier. It is also derived from package length, width and height"
+    },
+    {
+      "name": "unit_volume",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "pkg_length",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Packaged length of individual product"
+    },
+    {
+      "name": "pkg_width",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Packaged width"
+    },
+    {
+      "name": "pkg_height",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Packaged height"
+    },
+    {
+      "name": "weight_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Weight unit of measure"
+    },
+    {
+      "name": "dim_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Dimension unit of measure"
+    },
+    {
+      "name": "volume_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "diameter",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Diameter of individual product"
+    },
+    {
+      "name": "color",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Product color"
+    },
+    {
+      "name": "casepack_size",
+      "type": "int",
+      "required": false,
+      "primaryKey": false,
+      "description": "If product has casepack, then how many products in each case pack. We will need to extend object to add casepack dimensions"
+    },
+    {
+      "name": "gtin",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Global Trade Item Number (GTIN) is a 14-digit number which includes various EAN/UCC numbering structures and is used to uniquely identify a product"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "sap_0material_attr__prdha",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Product hierarchy. Predicate key for SAP mapping. Upsert key for  T179"
+    },
+    {
+      "name": "long_term_horizon",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Long Term Horizon time window used to determine salvage value"
+    },
+    {
+      "name": "long_term_horizon_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "UOM for Long Term Horizon time window used to determine salvage value"
+    },
+    {
+      "name": "salvage_value_percentage",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Product cost that we can expect to recover at end of Long Term Horizon"
+    }
+  ]
+}

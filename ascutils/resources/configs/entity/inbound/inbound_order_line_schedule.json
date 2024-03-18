@@ -1,0 +1,184 @@
+{
+  "name": "InboundOrderLineSchedule",
+  "displayName": "inbound_order_line_schedule",
+  "description": "Stores schedule-line level data within an inbound_order_line and is relevant only when schedules are used.",
+  "entityType": "transactional",
+  "category": "inbound",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "order_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order",
+        "field": "id"
+      }
+    },
+    {
+      "name": "order_line_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "id"
+      }
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by Galaxy."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of line (e.g. submitted, confirmed)\n\n'Reserved' values for [Galaxy] 2022: \n\"Cancelled\" (populated in SAP mapping; also used for deleted)\n\"Open\" (not populated in SAP mapping)\n\"Closed\" (not populated in SAP mapping)\n\"InTransit\" (not populated in SAP mapping)\n\"Confirmed\" (not populated in SAP mapping)\n\"\": Null is also acceptable; \nUsage is determined by apps and customers\nCustomers can also populate their own values."
+    },
+    {
+      "name": "schedule_creation_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "external_line_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "expected_delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "confirmation_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "goods_issue_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date and time when material was available at origin to ship (typically for PO)"
+    },
+    {
+      "name": "material_availability_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date and time when material is available at origin to ship"
+    },
+    {
+      "name": "ship_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date and time when vendor would ship products for this order-line"
+    },
+    {
+      "name": "delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date and time when vendor would deliver products in this order-line to company location."
+    },
+    {
+      "name": "quantity_submitted",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity submitted to vendor (for POs), or quantity for transfer (for transfer orders)"
+    },
+    {
+      "name": "quantity_confirmed",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity confirmed (e.g. by vendor)"
+    },
+    {
+      "name": "quantity_received",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity received into inventory at destination"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "sap_lips__vbeln",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Delivery Number. Predicate key for SAP mapping. Upsert key for VTTP"
+    },
+    {
+      "name": "sap_vttp__tknum",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Shipment Number. Predicate key for SAP mapping. Upsert key for VTTK"
+    }
+  ]
+}

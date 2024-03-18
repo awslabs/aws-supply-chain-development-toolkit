@@ -1,0 +1,206 @@
+{
+  "name": "SourcingRules",
+  "displayName": "sourcing_rules",
+  "description": "Defines rules at product-site level to specify the sourcing related attributes (for example, rule type, to and from site, transportation lane, minimum and maximum quanity, priority, ratio, and so on).",
+  "entityType": "non_transactional",
+  "category": "planning",
+  "fields": [
+    {
+      "name": "sourcing_rule_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of product to be sourced",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "to_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Site into which product will be sourced",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "from_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Site from where product will be sourced",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_group_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product_hierarchy",
+        "field": "id"
+      }
+    },
+    {
+      "name": "sourcing_rule_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of sourcing rule - e.g. transfer, buy, manufacture"
+    },
+    {
+      "name": "tpartner_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Trading partner ID. Used depending on sourcing rule type. E.g. when sourcing rule is of type Buy, then this is vendor ID, and is to be used alongwith other attributes to find additional details from vendor_product and other entities.",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "transportation_lane_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Transportation lane ID. Used depending on sourcing rule type. E.g. when sourcing is of type Transfer, then this ID is used alongwith other attributes to select the right transportation_lane",
+      "foreignKey": {
+        "category": "network",
+        "entity": "transportation_lane",
+        "field": "id"
+      }
+    },
+    {
+      "name": "sourcing_priority",
+      "type": "int",
+      "required": false,
+      "primaryKey": false,
+      "description": "Priority of sourcing rule"
+    },
+    {
+      "name": "sourcing_ratio",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Proportion of product to be sourced from this product/group, to_site, from_site/tpartner_id combination. All sources for a product, site should add to 1 for a specific time period (or application normalizes the ratio to 1)"
+    },
+    {
+      "name": "qty_uom",
+      "type": "string",
+      "default": "Eaches",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity UOM associated with sourcing rule"
+    },
+    {
+      "name": "min_qty",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Minimum quantity for sourcing rule"
+    },
+    {
+      "name": "max_qty",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Maximum quantity for sourcing rule"
+    },
+    {
+      "name": "qty_multiple",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity is in multiples of this value"
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "default": "1900-01-01 00:00:00",
+      "required": false,
+      "primaryKey": true,
+      "description": "Date-time when sourcing rule becomes effective"
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "default": "9999-12-31 23:59:59",
+      "required": false,
+      "primaryKey": true,
+      "description": "Date-time till when sourcing rule is effective"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "production_process_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of process operation. E.g. stop machine",
+      "foreignKey": {
+        "category": "operation",
+        "entity": "production_process",
+        "field": "production_process_id"
+      }
+    }
+  ]
+}

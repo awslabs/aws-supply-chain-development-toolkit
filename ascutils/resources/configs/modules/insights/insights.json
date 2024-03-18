@@ -1,0 +1,1468 @@
+{
+    "module_name": "Insights",
+    "entities": [
+        {
+            "name": "site",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "description",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "geo_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "site_type",
+                    "requiredFor": []
+                },
+                {
+                    "name": "company_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "latitude",
+                    "requiredFor": [
+                        "Insights - Network Map"
+                    ]
+                },
+                {
+                    "name": "longitude",
+                    "requiredFor": [
+                        "Insights - Network Map"
+                    ]
+                },
+                {
+                    "name": "is_active",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "open_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "end_date",
+                    "requiredFor": []
+                }
+            ]
+        },
+        {
+            "name": "transportation_lane",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "from_site_id",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "to_site_id",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "product_group_id",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "transit_time",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "time_uom",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "distance",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "distance_uom",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "eff_start_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "eff_end_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "emissions_per_unit",
+                    "requiredFor": []
+                },
+                {
+                    "name": "emissions_per_weight",
+                    "requiredFor": []
+                },
+                {
+                    "name": "company_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "from_geo_id",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "to_geo_id",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "carrier_tpartner_id",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "service_type",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "trans_mode",
+                    "requiredFor": [
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "cost_per_unit",
+                    "requiredFor": []
+                },
+                {
+                    "name": "cost_currency",
+                    "requiredFor": []
+                }
+            ]
+        },
+        {
+            "name": "product",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "description",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "product_group_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "is_deleted",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "product_type",
+                    "requiredFor": []
+                },
+                {
+                    "name": "parent_product_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "base_uom",
+                    "requiredFor": []
+                }
+            ]
+        },
+        {
+            "name": "product_hierarchy",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "description",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "parent_product_group_id",
+                    "requiredFor": []
+                }
+            ]
+        },
+        {
+            "name": "product_uom",
+            "requiredFor": [],
+            "fields": [
+                {
+                    "name": "product_uom_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "uom",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "description",
+                    "requiredFor": []
+                },
+                {
+                    "name": "quantity",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "quantity_uom",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "eff_start_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "eff_end_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "company_id",
+                    "requiredFor": []
+                }
+            ]
+        },
+        {
+            "name": "uom_conversion",
+            "requiredFor": [],
+            "fields": [
+                {
+                    "name": "uom",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "company_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "conversion_uom_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "conversion_factor",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "geography",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "description",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "parent_geo_id",
+                    "requiredFor": []
+                }
+            ]
+        },
+        {
+            "name": "trading_partner",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "description",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "country",
+                    "requiredFor": []
+                },
+                {
+                    "name": "eff_start_date",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "eff_end_date",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "time_zone",
+                    "requiredFor": []
+                },
+                {
+                    "name": "is_active",
+                    "requiredFor": []
+                },
+                {
+                    "name": "tpartner_type",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "geo_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "inbound_order",
+            "requiredFor": [],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "order_type",
+                    "requiredFor": []
+                },
+                {
+                    "name": "order_status",
+                    "requiredFor": []
+                },
+                {
+                    "name": "to_site_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "submitted_date",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "tpartner_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "inbound_order_line",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "order_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "order_type",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "status",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "to_site_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "from_site_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "quantity_submitted",
+                    "requiredFor": []
+                },
+                {
+                    "name": "quantity_confirmed",
+                    "requiredFor": []
+                },
+                {
+                    "name": "quantity_received",
+                    "requiredFor": []
+                },
+                {
+                    "name": "quantity_uom",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "expected_delivery_date",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "submitted_date",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "incoterm",
+                    "requiredFor": []
+                },
+                {
+                    "name": "product_group_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "company_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "tpartner_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "reservation_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "order_receive_date",
+                    "requiredFor": []
+                }
+            ]
+        },
+        {
+            "name": "inbound_order_line_schedule",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "order_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "order_line_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "company_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "expected_delivery_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "delivery_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "ship_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "quantity_submitted",
+                    "requiredFor": []
+                },
+                {
+                    "name": "quantity_confirmed",
+                    "requiredFor": []
+                },
+                {
+                    "name": "quantity_received",
+                    "requiredFor": []
+                }
+            ]
+        },
+        {
+            "name": "shipment",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "order_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "order_line_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "supplier_tpartner_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "ship_to_site_id",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "actual_delivery_date",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "units_shipped",
+                    "requiredFor": []
+                },
+                {
+                    "name": "uom",
+                    "requiredFor": []
+                },
+                {
+                    "name": "planned_ship_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "actual_ship_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "planned_delivery_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "ship_from_site_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "supplier_tpartner_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "transportation_mode",
+                    "requiredFor": []
+                },
+                {
+                    "name": "ship_from_site_address_country",
+                    "requiredFor": []
+                },
+                {
+                    "name": "ship_to_site_address_country",
+                    "requiredFor": []
+                },
+                {
+                    "name": "carrier_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "package_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "inventory_policy",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "site_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "min_safety_stock",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "max_safety_stock",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "qty_uom",
+                    "requiredFor": []
+                },
+                {
+                    "name": "min_doc_limit",
+                    "requiredFor": []
+                },
+                {
+                    "name": "max_doc_limit",
+                    "requiredFor": []
+                },
+                {
+                    "name": "eff_start_date",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "eff_end_date",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "company_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "ss_policy",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "fallback_policy_1",
+                    "requiredFor": []
+                },
+                {
+                    "name": "product_group_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "dest_geo_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "vendor_tpartner_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "inventory_level",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "snapshot_date",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "site_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "company_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "on_hand_inventory",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "allocated_inventory",
+                    "requiredFor": []
+                },
+                {
+                    "name": "quantity_uom",
+                    "requiredFor": []
+                },
+                {
+                    "name": "inv_condition",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "lot_number",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations",
+                        "Insights - Lead Time Insights"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "forecast",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "site_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "mean",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "forecast_start_dttm",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "forecast_end_dttm",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "quantity_uom",
+                    "requiredFor": []
+                },
+                {
+                    "name": "snapshot_date",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "region_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "product_group_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "vendor_lead_time",
+            "requiredFor": [
+                "Insights - Inventory Visibility",
+                "Insights - Network Map",
+                "Insights - Inventory Insights",
+                "Insights - Rebalance Recommendations",
+                "Insights - Lead Time Insights"
+            ],
+            "fields": [
+                {
+                    "name": "company_id",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "vendor_tpartner_id",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "site_id",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "planned_lead_time",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "eff_start_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "eff_end_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "product_group_id",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                },
+                {
+                    "name": "region_id",
+                    "requiredFor": [
+                        "Insights - Lead Time Insights"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "outbound_order_line",
+            "requiredFor": [],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "cust_order_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "ship_from_site_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "ship_to_site_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "final_quantity_requested",
+                    "requiredFor": []
+                },
+                {
+                    "name": "quantity_promised",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "quantity_delivered",
+                    "requiredFor": []
+                },
+                {
+                    "name": "status",
+                    "requiredFor": []
+                },
+                {
+                    "name": "quantity_uom",
+                    "requiredFor": []
+                },
+                {
+                    "name": "requested_delivery_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "promised_delivery_date",
+                    "requiredFor": []
+                }
+            ]
+        },
+        {
+            "name": "outbound_shipment",
+            "requiredFor": [],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "from_site_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "cust_order_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "cust_order_line_id",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "expected_ship_date",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "actual_ship_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "shipped_qty",
+                    "requiredFor": [
+                        "Insights - Inventory Visibility",
+                        "Insights - Network Map",
+                        "Insights - Inventory Insights",
+                        "Insights - Rebalance Recommendations"
+                    ]
+                },
+                {
+                    "name": "cust_shipment_status",
+                    "requiredFor": []
+                },
+                {
+                    "name": "to_site_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "expected_delivery_date",
+                    "requiredFor": []
+                },
+                {
+                    "name": "actual_delivery_date",
+                    "requiredFor": []
+                }
+            ]
+        }
+    ]
+}

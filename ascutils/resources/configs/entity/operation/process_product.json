@@ -1,0 +1,193 @@
+{
+  "name": "ProcessProduct",
+  "displayName": "process_product",
+  "description": "Define the product or material associated with an activity.",
+  "entityType": "transactional",
+  "category": "operation",
+  "fields": [
+    {
+      "name": "process_product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "ID associated with process and product."
+    },
+    {
+      "name": "process_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "ID of process. e.g. process or work order or maintenance order number",
+      "foreignKey": {
+        "category": "operation",
+        "entity": "process_header",
+        "field": "process_id"
+      }
+    },
+    {
+      "name": "process_operation_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "This is optional. E.g. production consumables dont have operations - they have blanket orders against which materials are consumed.",
+      "foreignKey": {
+        "category": "operation",
+        "entity": "process_operation",
+        "field": "process_operation_id"
+      }
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Product being requested",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type associated with this process product - e.g. consumption or production."
+    },
+    {
+      "name": "product_value",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Monetary value of product being requested. Used to prioritize"
+    },
+    {
+      "name": "currency_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of process product"
+    },
+    {
+      "name": "requested_availability_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when material was requested to be available. Can be different from operation or header. E.g. $500K pump is needed, but not budgeted - then they will start other work and release material reqt for pump later."
+    },
+    {
+      "name": "quantity_submitted",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity submitted as part of process for product"
+    },
+    {
+      "name": "quantity_confirmed",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity committed or confirmed against request"
+    },
+    {
+      "name": "quantity_consumed",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity consumed against quantity on this process/work order"
+    },
+    {
+      "name": "reservation_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Link to reservation ID associated with this record",
+      "foreignKey": {
+        "category": "planning",
+        "entity": "reservation",
+        "field": "reservation_id"
+      }
+    },
+    {
+      "name": "reservation_detail_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Link to reservation detail ID associated with this record",
+      "foreignKey": {
+        "category": "planning",
+        "entity": "reservation",
+        "field": "reservation_detail_id"
+      }
+    },
+    {
+      "name": "quantity_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unit of measure for quantity"
+    },
+    {
+      "name": "process_product_url",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "URL to access process product record in source system"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "source_update_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date time stamp of the update made in the source system (SAP etc)."
+    },
+    {
+      "name": "source_event_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of the event created in the source system. Example: PO Receipt, Shipment schedule etc"
+    }
+  ]
+}

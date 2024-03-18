@@ -1,0 +1,206 @@
+{
+  "name": "Site",
+  "displayName": "site",
+  "description": "Stores information for sites holding inventory such as Stores, Distribution Centres ,including ID, name, address, geographical region, and site type.",
+  "entityType": "non_transactional",
+  "category": "network",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Referred by other objects as 'site_id' unless explicitly stated"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "geo_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "geography",
+        "field": "id"
+      }
+    },
+    {
+      "name": "address_1",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "address_2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "address_3",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "city",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "state_prov",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "postal_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "phone_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Email of POC"
+    },
+    {
+      "name": "time_zone",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "site_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of site. E.g. Warehouse, Cross-Dock, Delivery Station, DC, Factory, Store, MFC, Port etc.\n\n'Reserved' values for ASC 2022:\n\nCommonly used values: \n\u201cDC\": Warehouse\/Distribution Center \n\"DS\": Delivery Station\n\"MFG\": Manufacturing\/processing center\/plant\/factory\n\"ST\" Store\n\"XD\": Cross dock\n\nOthers:\n\"CC\": Consolidation center\n\"CL\": Customer location\n\"CPP\": Customer pickup point\n\"HN\": Hybrid node; servers multiple purposes\n\"MNT\": Maintainence center\n\"PT\": Port\n\"RC\": Repair center\n\"RTN\": Return node\n\"RY\": Rail yard\n\"SPP\": Supplier pickup point - e.g. where product is picked up from supplier\n\n\"\": Null is also acceptable; \nUsage is determined by apps and customers\nCustomers can also populate their own values."
+    },
+    {
+      "name": "unlocode",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Standardized code referred to by EDI messages - e.g. for ports"
+    },
+    {
+      "name": "latitude",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "longitude",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "is_active",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "site_calendar_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Operating and holiday calendar for site",
+      "foreignKey": {
+        "category": "reference",
+        "entity": "calendar",
+        "field": "calendar_id"
+      }
+    },
+    {
+      "name": "site_classifier",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Information about site classification -  e.g. if a store is 'high foot fall store' or if a DC is 'Central DC' (or CDC) vs 'Regional DC' (or RDC)"
+    },
+    {
+      "name": "open_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when facility started operations. E.g. a facility that will launch operations in the future may be part of future planning but not current planning."
+    },
+    {
+      "name": "end_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when facility ended operations"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    }
+  ]
+}

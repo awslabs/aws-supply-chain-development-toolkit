@@ -1,0 +1,330 @@
+{
+  "name": "TransportationLane",
+  "displayName": "transportation_lane",
+  "description": "Contains information about transportation lanes, including from and to sites, transportation mode, and transit time.",
+  "entityType": "non_transactional",
+  "category": "network",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Referred by other objects as 'lane_id' unless explicitly stated"
+    },
+    {
+      "name": "from_site_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": true,
+      "primaryKey": true,
+      "description": "Can be omitted if from_geo_id is populated",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "to_site_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": true,
+      "primaryKey": true,
+      "description": "Can be omitted if to_geo_id is populated",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "from_geo_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": true,
+      "primaryKey": true,
+      "description": "Provides a fallback; allows same values for lead-time, distance etc to be used for all sites originating from this geo_id till the destination site or geo",
+      "foreignKey": {
+        "category": "org",
+        "entity": "geography",
+        "field": "id"
+      }
+    },
+    {
+      "name": "to_geo_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": true,
+      "primaryKey": true,
+      "description": "Provides a fallback; allows same values for lead-time, distance etc to be used for all sites ending from this geo_id from the respective destination site or geo",
+      "foreignKey": {
+        "category": "org",
+        "entity": "geography",
+        "field": "id"
+      }
+    },
+    {
+      "name": "carrier_tpartner_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "ID of trading partner who is performing role of carrier",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "trans_mode",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Transportation mode e.g. ship, water, truck, rail"
+    },
+    {
+      "name": "service_type",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Provides info on carrier's shipping methods e.g. ground, express."
+    },
+    {
+      "name": "product_group_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Lead times can vary depending on type of product. E.g. some lanes may be for furniture while others for modbile phones.",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product_hierarchy",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Product ID - used when lane has product specific configuration. Requested by Insights for Rebalancing",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "transit_time",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "transit_time_sd",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Standard deviation of transit time"
+    },
+    {
+      "name": "time_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "distance",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "distance_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "daily_start_time",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "What time does the lane begin operating"
+    },
+    {
+      "name": "daily_end_time",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "What time does lane operation end"
+    },
+    {
+      "name": "open_sun",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Denotes which day of week is lane open. Note - all 7 columns can be replaced with a number (but will need mapping)"
+    },
+    {
+      "name": "open_mon",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "open_tue",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "open_wed",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "open_thu",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "open_fri",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "open_sat",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Basic cost per unit and weight measures. In future, this can be enhanced with tiered weights/dimensions"
+    },
+    {
+      "name": "cost_per_unit",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Basic cost per unit and weight measures. In future, this can be enhanced with tiered weights/dimensions"
+    },
+    {
+      "name": "cost_per_weight",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "cost_currency",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Currency UOM of costs"
+    },
+    {
+      "name": "weight_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "emissions_per_unit",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Carbon emissions emiited per unit or per weight, per distance uom"
+    },
+    {
+      "name": "emissions_per_weight",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source of data"
+    },
+    {
+      "name": "transportation_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Transportation cost related to the transport lane"
+    },
+    {
+      "name": "transportation_cost_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Transportation cost UOM related to the transport lane"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    }
+  ]
+}

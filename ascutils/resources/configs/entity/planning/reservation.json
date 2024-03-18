@@ -1,0 +1,275 @@
+{
+  "name": "Reservation",
+  "displayName": "reservation",
+  "description": "Provides details about inventory reservation. For example, reservation ID, type, date, quantity, product ID.",
+  "entityType": "transactional",
+  "category": "planning",
+  "fields": [
+    {
+      "name": "reservation_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Reservation ID"
+    },
+    {
+      "name": "reservation_detail_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Reservation Detail ID"
+    },
+    {
+      "name": "reservation_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of reservation. E.g. 'Procurement' or 'BTS' (for build to stock, in case reservation is against inventory)\nCan be user defined."
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status for reservation. Can contain user defined values."
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "quantity",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "quantity_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "reservation_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when reservation is generated"
+    },
+    {
+      "name": "is_deleted",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Y/N flag indicating whether reservation is deleted or not."
+    },
+    {
+      "name": "requisition_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source object identifier reference to inbound order of type PR",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "order_id"
+      }
+    },
+    {
+      "name": "requisition_line_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source object identifier reference to inbound order line of type PR\n\nInternal note: In SAP, maps to EBAN and EBKN",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "id"
+      }
+    },
+    {
+      "name": "rfq_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source object identifier reference to inbound order of type RFQ",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "order_id"
+      }
+    },
+    {
+      "name": "rfq_line_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source object identifier reference to inbound order line of type RFQ\nInternal note: In SAP, maps to EKKO and EKPO. EKKO has field document type (BSTYP) which will say if it is a PO/RFQ",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "id"
+      }
+    },
+    {
+      "name": "order_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source object identifier reference to inbound order",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "order_id"
+      }
+    },
+    {
+      "name": "order_line_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source object identifier reference to inbound order line",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "id"
+      }
+    },
+    {
+      "name": "order_line_schedule_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source object identifier reference to inbound order line schedule",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line_schedule",
+        "field": "id"
+      }
+    },
+    {
+      "name": "stock_transfer_1_order_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "order_id"
+      }
+    },
+    {
+      "name": "stock_transfer_1_order_line_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "id"
+      }
+    },
+    {
+      "name": "stock_transfer_2_order_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "order_id"
+      }
+    },
+    {
+      "name": "stock_transfer_2_order_line_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "id"
+      }
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source of data - e.g. internal or external"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "source_update_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date time stamp of the update made in the source system (SAP etc)."
+    },
+    {
+      "name": "source_event_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of the event created in the source system. Example: PO Receipt, Shipment schedule etc"
+    }
+  ]
+}

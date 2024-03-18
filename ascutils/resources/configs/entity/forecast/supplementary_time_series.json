@@ -1,0 +1,101 @@
+{
+  "name": "SupplementaryTimeSeries",
+  "displayName": "supplementary_time_series",
+  "description": "supplementary_time_series",
+  "entityType": "transactional",
+  "category": "forecast",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier with each supplementary data entry"
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unique identifier for a specific product. Corresponds to product_id in the outbound_order_line dataset ",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "order_date",
+      "type": "timestamp",
+      "required": true,
+      "primaryKey": false,
+      "description": "The timestamp indicating the date and time when the date for the respective time-series was recorded."
+    },
+    {
+      "name": "channel_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unique identifier for a specific channel. Corresponds to channel_id in the outbound_order_line dataset"
+    },
+    {
+      "name": "customer_tpartner_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unique identifier for a specific customer. Corresponds to customer_tpartner_id  field in outbound_order_line dataset",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unique identifier for a specific site or location. Depending on the forecast configuration, this can represent either 'ship_from_site_id' or 'ship_to_site_id' at the lowest level from the outbound_order_line dataset",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "time_series_name",
+      "type": "string",
+      "description": "Name of the specific type of the time series.",
+      "required": true,
+      "primaryKey": false
+    },
+    {
+      "name": "time_series_value",
+      "type": "string",
+      "description": "Value corresponding to the specific time series. This could represent quantities, metric or string that is relevant to the nature of the data.",
+      "required": true,
+      "primaryKey": false
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "name": "UomConversion",
+  "displayName": "uom_conversion",
+  "description": "Contains conversions for unit of measure (UOM).",
+  "entityType": "non_transactional",
+  "category": "reference",
+  "fields": [
+    {
+      "name": "uom",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unit of measure (UOM). Referred to elsewhere as uom (e.g. weight_uom, currency_uom)"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "uom_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Alternative code for UOM"
+    },
+    {
+      "name": "uom_description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Description of unit of measure"
+    },
+    {
+      "name": "uom_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of UOM. E.g. 'Currency', 'Weight', 'Volume', 'Unit'"
+    },
+    {
+      "name": "conversion_uom_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "UOM ID for converting to"
+    },
+    {
+      "name": "conversion_factor",
+      "type": "double",
+      "required": true,
+      "primaryKey": false,
+      "description": "Conversion factor"
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "default": "1900-01-01 00:00:00",
+      "required": false,
+      "primaryKey": true,
+      "description": "Effective start date-time"
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "default": "9999-12-31 23:59:59",
+      "required": false,
+      "primaryKey": true,
+      "description": "Effective end date-time"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source of data"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    }
+  ]
+}

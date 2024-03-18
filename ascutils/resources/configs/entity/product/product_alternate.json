@@ -1,0 +1,140 @@
+{
+  "name": "ProductAlternate",
+  "displayName": "product_alternate",
+  "description": "Contains information about alternative products, including type of alternative.",
+  "entityType": "non_transactional",
+  "category": "product",
+  "fields": [
+    {
+      "name": "product_alternate_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier of this record."
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": false,
+      "description": "ID of primary product",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "alternative_product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": false,
+      "description": "ID of alternate product"
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Site ID incase alternate is specific by site"
+    },
+    {
+      "name": "alternate_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of alternate product. E.g. \"Similar_Demand_Product\" to identify similar product that is used to generate forecast; other values are \"Substitute\", \"NPI Similar\", \"Promo Similar\".   Applications can list their own supported values. Usage is defined based on application logic."
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "priority",
+      "type": "int",
+      "required": false,
+      "primaryKey": false,
+      "description": "Priority or rank of alternatives"
+    },
+    {
+      "name": "alternate_group_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Used to group interchangeable alternate products.  Note: does not correspond to product_group in product_hierarchy."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of alternate product record. E.g. Active, Inactive"
+    },
+    {
+      "name": "alternate_product_qty",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity of alternate product. The conversion is done per base_UOM of primary product."
+    },
+    {
+      "name": "alternate_product_qty_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unit of measure (UOM) of alternative product quantity"
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "default": "1900-01-01 00:00:00",
+      "required": false,
+      "primaryKey": true,
+      "description": "Date-time when record becomes effective"
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "default": "12/31/99 23:59",
+      "required": false,
+      "primaryKey": true,
+      "description": "Date-time till when record is effective"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source of data"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    }
+  ]
+}
