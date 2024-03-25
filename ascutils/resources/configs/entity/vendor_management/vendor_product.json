@@ -1,0 +1,194 @@
+{
+  "name": "VendorProduct",
+  "displayName": "vendor_product",
+  "description": "Contains the product information per vendor, including price, lead-time, and inbound sites.",
+  "entityType": "non_transactional",
+  "category": "vendor_management",
+  "fields": [
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "vendor_tpartner_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Trading Partner ID of vendor",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Info on doc bug: Field was key in 1.3.2 but deleted from documentation. Added back in 1.3.4 in document",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "vendor_product_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Vendor's product identifier"
+    },
+    {
+      "name": "vendor_product_desc",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Vendor description"
+    },
+    {
+      "name": "vendor_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "vendor_cost_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of product for vendor. E.g. NP (new product), OB (obsolete)"
+    },
+    {
+      "name": "unit_volume",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "volume_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "unit_weight",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "weight_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "release_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when product was launched \/ released by the vendor"
+    },
+    {
+      "name": "end_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when product was stopped being supplied by vendor"
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "default": "1900-01-01 00:00:00",
+      "required": false,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "default": "9999-12-31 23:59:59",
+      "required": false,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "min_order_unit",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Minimum order quantity for vendor for this product"
+    },
+    {
+      "name": "country_of_origin",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "sap_eina__infnr",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Number of purchasing info record. Predicate key for SAP mapping. Upsert key for  EINE"
+    },
+    {
+      "name": "sap_eine__ebeln",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Purchasing Document Number. Predicate key for SAP mapping. Upsert key for EKPO"
+    },
+    {
+      "name": "sap_eine__ebelp",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Item Number of Purchasing Document. Predicate key for SAP mapping. Upsert key for EKPO"
+    }
+  ]
+}

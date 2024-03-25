@@ -1,0 +1,110 @@
+{
+  "name": "ProcessOperation",
+  "displayName": "process_operation",
+  "description": "Defines operation associated with an activity. For example, Stop machine, Oiling, and so on.",
+  "entityType": "transactional",
+  "category": "operation",
+  "fields": [
+    {
+      "name": "process_operation_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Type of process operation. E.g. stop machine"
+    },
+    {
+      "name": "process_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "ID of process. e.g. process or work order or maintenance order number",
+      "foreignKey": {
+        "category": "operation",
+        "entity": "process_header",
+        "field": "process_id"
+      }
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of operation within process. E.g. Open machine."
+    },
+    {
+      "name": "site_location",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Name of functional or actual location or section within site or plant, if different from header"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of operation within process"
+    },
+    {
+      "name": "operation_name",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Name of operation"
+    },
+    {
+      "name": "operation_sequence",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Sequence of operation within process"
+    },
+    {
+      "name": "planned_start_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Planned start date-time of operation"
+    },
+    {
+      "name": "planned_end_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Planned end date-time of operation"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    }
+  ]
+}

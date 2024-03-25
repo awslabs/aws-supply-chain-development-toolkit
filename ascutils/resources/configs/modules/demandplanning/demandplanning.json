@@ -1,0 +1,291 @@
+{
+    "module_name": "Demand Planning",
+    "entities": [
+        {
+            "name": "outbound_order_line",
+            "requiredFor": [
+                "Demand Planning - Forecast",
+                "Demand Planning - Product Lineage",
+                "Demand Planning - Supplementary Time Series"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Demand Planning - Forecast",
+                        "Demand Planning - Product Lineage",
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "cust_order_id",
+                    "requiredFor": [
+                        "Demand Planning - Forecast",
+                        "Demand Planning - Product Lineage",
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Demand Planning - Forecast",
+                        "Demand Planning - Product Lineage",
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "order_date",
+                    "requiredFor": [
+                        "Demand Planning - Forecast",
+                        "Demand Planning - Product Lineage",
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "final_quantity_requested",
+                    "requiredFor": [
+                        "Demand Planning - Forecast",
+                        "Demand Planning - Product Lineage",
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "ship_from_site_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "ship_to_site_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "channel_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "customer_tpartner_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "ship_to_site_address_city",
+                    "requiredFor": []
+                },
+                {
+                    "name": "ship_to_site_address_state",
+                    "requiredFor": []
+                },
+                {
+                    "name": "ship_to_site_address_country",
+                    "requiredFor": []
+                },
+                {
+                    "name": "status",
+                    "requiredFor": []
+                }
+            ]
+        },
+        {
+            "name": "product",
+            "requiredFor": [
+                "Demand Planning - Forecast",
+                "Demand Planning - Product Lineage",
+                "Demand Planning - Supplementary Time Series"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Demand Planning - Forecast",
+                        "Demand Planning - Product Lineage",
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "description",
+                    "requiredFor": [
+                        "Demand Planning - Forecast",
+                        "Demand Planning - Product Lineage",
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "parent_product_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "product_group_id",
+                    "requiredFor": []
+                },
+                {
+                    "name": "product_type",
+                    "requiredFor": []
+                },
+                {
+                    "name": "brand_name",
+                    "requiredFor": []
+                },
+                {
+                    "name": "color",
+                    "requiredFor": []
+                },
+                {
+                    "name": "display_desc",
+                    "requiredFor": []
+                },
+                {
+                    "name": "product_available_day",
+                    "requiredFor": []
+                },
+                {
+                    "name": "discontinue_day",
+                    "requiredFor": []
+                },
+                {
+                    "name": "base_uom",
+                    "requiredFor": []
+                },
+                {
+                    "name": "is_deleted",
+                    "requiredFor": []
+                },
+                {
+                    "name": "pkg_height",
+                    "requiredFor": []
+                },
+                {
+                    "name": "pkg_length",
+                    "requiredFor": []
+                },
+                {
+                    "name": "pkg_width",
+                    "requiredFor": []
+                },
+                {
+                    "name": "shipping_dimension",
+                    "requiredFor": []
+                },
+                {
+                    "name": "casepack_size",
+                    "requiredFor": []
+                }
+            ]
+        },
+        {
+            "name": "product_alternate",
+            "requiredFor": [
+                "Demand Planning - Product Lineage"
+            ],
+            "fields": [
+                {
+                    "name": "alternative_product_id",
+                    "requiredFor": [
+                        "Demand Planning - Product Lineage"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Demand Planning - Product Lineage"
+                    ]
+                },
+                {
+                    "name": "product_alternate_id",
+                    "requiredFor": [
+                        "Demand Planning - Product Lineage"
+                    ]
+                },
+                {
+                    "name": "alternate_type",
+                    "requiredFor": [
+                        "Demand Planning - Product Lineage"
+                    ]
+                },
+                {
+                    "name": "alternate_product_qty",
+                    "requiredFor": [
+                        "Demand Planning - Product Lineage"
+                    ]
+                },
+                {
+                    "name": "alternate_product_qty_uom",
+                    "requiredFor": [
+                        "Demand Planning - Product Lineage"
+                    ]
+                },
+                {
+                    "name": "eff_start_date",
+                    "requiredFor": [
+                        "Demand Planning - Product Lineage"
+                    ]
+                },
+                {
+                    "name": "eff_end_date",
+                    "requiredFor": [
+                        "Demand Planning - Product Lineage"
+                    ]
+                },
+                {
+                    "name": "status",
+                    "requiredFor": [
+                        "Demand Planning - Product Lineage"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "supplementary_time_series",
+            "requiredFor": [
+                "Demand Planning - Supplementary Time Series"
+            ],
+            "fields": [
+                {
+                    "name": "id",
+                    "requiredFor": [
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "order_date",
+                    "requiredFor": [
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "time_series_name",
+                    "requiredFor": [
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "time_series_value",
+                    "requiredFor": [
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "product_id",
+                    "requiredFor": [
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "site_id",
+                    "requiredFor": [
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "channel_id",
+                    "requiredFor": [
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                },
+                {
+                    "name": "customer_tpartner_id",
+                    "requiredFor": [
+                        "Demand Planning - Supplementary Time Series"
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,229 @@
+{
+  "name": "ProcessHeader",
+  "displayName": "process_header",
+  "description": "Track execution activities within a plant or site. For example, manufacturing, maintenance or repairs.",
+  "entityType": "transactional",
+  "category": "operation",
+  "fields": [
+    {
+      "name": "process_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "ID of process. e.g. process or work order or maintenance order number"
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of process. E.g. maintenance, repair"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Site ID or plant ID",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "site_location",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Name of location or section in site or plant. Can also be functional location (e.g. for maintenance, what is being maintained or where process is being run)"
+    },
+    {
+      "name": "planning_group",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Group that is planning the work. Will be an org entity in source system. E.g. Electrical."
+    },
+    {
+      "name": "execution_group",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Group that is responsible executing the work. Will be an org entity in source system."
+    },
+    {
+      "name": "program_group",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Long running program or project name used to group work. E.g.  \"Maintenance Campaign\""
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of process"
+    },
+    {
+      "name": "revision",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Revision number associated with planning or program group. Not order version."
+    },
+    {
+      "name": "latest_start_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Latest start date for process"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "process description"
+    },
+    {
+      "name": "priority",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Priority of process"
+    },
+    {
+      "name": "planned_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Total planned costs of process"
+    },
+    {
+      "name": "currency_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Currency in which value is specified"
+    },
+    {
+      "name": "planned_completion_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Planned completion date of process"
+    },
+    {
+      "name": "planned_closing_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Planned close date for process"
+    },
+    {
+      "name": "planned_release_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when process is planned to be released. E.g. material requirements are kicked off after 'release'"
+    },
+    {
+      "name": "planned_start_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Planned start date for process. E.g. when process is going to be executed (which is after released)"
+    },
+    {
+      "name": "actual_completion_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Actual completion date of process"
+    },
+    {
+      "name": "actual_closing_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Actual close date for process"
+    },
+    {
+      "name": "actual_release_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when process was actually released"
+    },
+    {
+      "name": "actual_start_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Actual start date for process"
+    },
+    {
+      "name": "process_url",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "URL to access process record in source system"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source of data"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "source_update_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date time stamp of the update made in the source system (SAP etc)."
+    },
+    {
+      "name": "source_event_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of the event created in the source system. Example: PO Receipt, Shipment schedule etc"
+    }
+  ]
+}

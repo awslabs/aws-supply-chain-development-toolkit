@@ -1,0 +1,138 @@
+{
+  "name": "InventoryLevel",
+  "displayName": "inventory_level",
+  "description": "A snapshot of the product’s inventory condition in each site. For example, snapshot date, on-hand inventory, condition of the product.",
+  "entityType": "transactional",
+  "category": "inventory",
+  "fields": [
+    {
+      "name": "snapshot_date",
+      "type": "timestamp",
+      "required": true,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "on_hand_inventory",
+      "type": "double",
+      "required": true,
+      "primaryKey": false,
+      "description": "Inventory that is physically at the site; typically in eaches but marked as double in case customer deals in bulk goods (e.g. grain)\n\nDenotes quantity of inventory in a given inventory condition; if no inventory condition is specified, this is equivalent to 'unrestricted' inventory"
+    },
+    {
+      "name": "allocated_inventory",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Inventory ear-marked for some outbound process (e.g. customer shipment), but specific products are not bound"
+    },
+    {
+      "name": "bound_inventory",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Inventory bound to some process (e.g. inventory picked to fulfill an order)"
+    },
+    {
+      "name": "quantity_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity unit of measure for inventory"
+    },
+    {
+      "name": "inv_condition",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Condition of inventory (e.g. in QA, damaged). Inventory in different conditions will be in different rows. All values in different conditions are mutually exclusive\n\n'Reserved' inventory condition values for [ASC] 2022:\n\"Unrestricted\" (inventory is available)\n\"Inspection\" (under quality or any other inspection)\n\"Returns\" (typically goes to returns area)\n\"Blocked\" (blocked for any reason)\n\"InTransfer\" (will be used when there are 2 step SAP stock transfer; implementation has to make sure there is no duplication with transfer orders)\n\"Restricted\" (Restricted for another reason - but not blocked)\n\nUsage is determined by apps and customers\nCustomers can also populate their own values."
+    },
+    {
+      "name": "lot_number",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "expiry_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "source_update_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date time stamp of the update made in the source system (SAP etc)."
+    },
+    {
+      "name": "source_event_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of the event created in the source system. Example: PO Receipt, Shipment schedule etc"
+    }
+  ]
+}

@@ -1,0 +1,469 @@
+{
+  "name": "OutboundOrderLine",
+  "displayName": "outbound_order_line",
+  "description": "Contains orders originating from your company and shipped to locations outside of the your network. Outbound_order_line contains order date, customer location, incoterms, and so on. It also includes product, price, discount, and units.",
+  "entityType": "transactional",
+  "category": "outbound",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": true,
+      "primaryKey": true,
+      "description": "Order line ID is not required - an order product can be specfied by order ID, company and product ID\n\nReferred by other objects as 'cust_order_line_id' unless explicitly stated"
+    },
+    {
+      "name": "cust_order_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Denotes customer order ID"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "order_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date and time when customer order was placed"
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_group_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product_hierarchy",
+        "field": "id"
+      }
+    },
+    {
+      "name": "customer_tpartner_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "For companies where customers are stored in Trading Partner table, trading partner ID will be stored here",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of customer order\nReserved' values for [ASC] 2022: \n\"Cancelled\" (populated in SAP mapping; also used for deleted)\n\"Open\" (not populated in SAP mapping)\n\"Closed\" (not populated in SAP mapping)\n\"InTransit\" (not populated in SAP mapping)\n\"Delivered\" (not populated in SAP mapping)\n\"\": Null is also acceptable; \nUsage is determined by apps and customers\nCustomers can also populate their own values."
+    },
+    {
+      "name": "init_quantity_requested",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Orderd quantity in units/eaches"
+    },
+    {
+      "name": "final_quantity_requested",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Final quantity after any cancellations or changes"
+    },
+    {
+      "name": "quantity_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity unit of measure for the order-line"
+    },
+    {
+      "name": "requested_delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "promised_delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "actual_delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "list_price",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "sold_price",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "discount",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "discount_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "currency_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "tax",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Tax applied to this order"
+    },
+    {
+      "name": "incoterm1",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "incoterm2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_from_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Origin site ID for outbound orders, for cases when customers provide the data",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "ship_to_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Destination site ID for outbound orders; not expected to match to this company's side_id (as this order is going outside company network).",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "ship_to_site_address_1",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_address_2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_address_city",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_address_state",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_address_country",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_address_zip",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "availability_status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Instock availability status of product at time of order. E.g. OOS, Instock"
+    },
+    {
+      "name": "quantity_promised",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "quantity_delivered",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "channel_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Information related to where customer placed order. In future we may connect to another object that can track customer journey"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "sap_2lis_11_vahdr__vbeln",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Reference Document Number. Predicate key for SAP mapping. Upsert key for VEDA"
+    },
+    {
+      "name": "sap_2lis_11_vaitm__kunnr",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Sold-to Party. Predicate key for SAP mapping. Upsert key for 0CUST_SALES_ATTR"
+    },
+    {
+      "name": "sap_2lis_11_vaitm__vkorg",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Sales Organization. Predicate key for SAP mapping. Upsert key for 0CUST_SALES_ATTR"
+    },
+    {
+      "name": "sap_2lis_11_vaitm__vtweg",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Distribution Channel. Predicate key for SAP mapping. Upsert key for 0CUST_SALES_ATTR"
+    },
+    {
+      "name": "sap_2lis_11_vaitm__spart",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Division. Predicate key for SAP mapping. Upsert key for 0CUST_SALES_ATTR"
+    },
+    {
+      "name": "sap_2lis_11_vaitm__pkunre",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Bill-to party. Predicate key for SAP mapping."
+    },
+    {
+      "name": "shipping_instr_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Relevant for enterprise customers. Code for shipping instructions.",
+      "postGA": "Y"
+    },
+    {
+      "name": "payment_terms_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "postGA": "Y"
+    },
+    {
+      "name": "std_terms_agreement",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Relevant for enterprise customers. Agreement between company and customer",
+      "postGA": "Y"
+    },
+    {
+      "name": "std_terms_agreement_ver",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Version of agreement between company and customer",
+      "postGA": "Y"
+    },
+    {
+      "name": "parent_product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Higher level product in BOM",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "alternate_product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "product for which ordered product was the alternative",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "weight",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Expected weight of product",
+      "postGA": "Y"
+    },
+    {
+      "name": "fulfillment_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Expected cost of fulfillment",
+      "postGA": "Y"
+    },
+    {
+      "name": "customer_ship_option_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "If customer had multiple ship options, which option did customer select",
+      "postGA": "Y"
+    },
+    {
+      "name": "bill_to_site_address_1",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "postGA": "Y"
+    },
+    {
+      "name": "bill_to_site_address_2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "postGA": "Y"
+    },
+    {
+      "name": "bill_to_site_address_city",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "postGA": "Y"
+    },
+    {
+      "name": "bill_to_site_address_state",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "postGA": "Y"
+    },
+    {
+      "name": "bill_to_site_address_country",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "postGA": "Y"
+    },
+    {
+      "name": "bill_to_site_address_zip",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "postGA": "Y"
+    }
+  ]
+}

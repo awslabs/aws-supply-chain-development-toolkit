@@ -1,0 +1,219 @@
+{
+  "name": "ProductUOM",
+  "displayName": "product_uom",
+  "description": "Contains the product packaging options and conversations between packages.",
+  "entityType": "non_transactional",
+  "category": "product",
+  "fields": [
+    {
+      "name": "product_uom_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "ID for product-uom combination"
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": false,
+      "description": "Product associated with product-uom combination"
+    },
+    {
+      "name": "uom",
+      "type": "string",
+      "required": true,
+      "primaryKey": false,
+      "description": "Unit of Measure (UOM) Identifier"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Description of product-uom"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      },
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "price",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Price of product-uom"
+    },
+    {
+      "name": "cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Cost of product-uom"
+    },
+    {
+      "name": "currency_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unit of measure (UOM) of currency"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of record. E.g. Active, Inactive. Can be user defined"
+    },
+    {
+      "name": "is_standard",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Is this a standard product-uom"
+    },
+    {
+      "name": "barcode_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of barcode"
+    },
+    {
+      "name": "barcode_value",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Value of barcode"
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of product-uom. Can be user-defined"
+    },
+    {
+      "name": "quantity",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Denotes the quantity for one product uom ID in terms of base UOM for the product."
+    },
+    {
+      "name": "quantity_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unit of measure (UOM) of quantity in base UOM"
+    },
+    {
+      "name": "length",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Pack length"
+    },
+    {
+      "name": "width",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Pack width"
+    },
+    {
+      "name": "height",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Pack height"
+    },
+    {
+      "name": "dimension_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unit of measure (UOM) of dimension"
+    },
+    {
+      "name": "volume",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Volume of pack"
+    },
+    {
+      "name": "volume_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unit of measure (UOM) of volume"
+    },
+    {
+      "name": "weight",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Weight of pack"
+    },
+    {
+      "name": "weight_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unit of measure (UOM) of weight"
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "default": "1900-01-01 00:00:00",
+      "required": false,
+      "primaryKey": true,
+      "description": "Date-time when record becomes effective"
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "default": "9999-12-31 23:59:59",
+      "required": false,
+      "primaryKey": true,
+      "description": "Date-time till when record is effective"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source of data"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    }
+  ]
+}

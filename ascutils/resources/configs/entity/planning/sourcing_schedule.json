@@ -1,0 +1,115 @@
+{
+  "name": "SourcingSchedule",
+  "displayName": "sourcing_schedule",
+  "description": "Sourcing schedule determines when to source. For example, source from vendors or transfer between sites.",
+  "entityType": "non_transactional",
+  "category": "planning",
+  "fields": [
+    {
+      "name": "sourcing_schedule_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "ID of sourcing schedule"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "tpartner_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of trading partner",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of supply schedule. E.g. Active, Inactive"
+    },
+    {
+      "name": "from_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Origin site ID (e.g. hub, vendor)",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "to_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Destination site ID (e.g. hub, or a customer in the network)",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "schedule_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of schedule - e.g. Inbound Ordering, Outbound shipping"
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "default": "1900-01-01 00:00:00",
+      "required": false,
+      "primaryKey": true,
+      "description": "Date-time when schedule becomes effective"
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "default": "9999-12-31 23:59:59",
+      "required": false,
+      "primaryKey": true,
+      "description": "Date-time till when schedule is effective"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    }
+  ]
+}

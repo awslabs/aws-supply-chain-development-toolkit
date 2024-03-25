@@ -1,0 +1,142 @@
+{
+  "name": "Calendar",
+  "displayName": "calendar",
+  "description": "Calendars can be used for many purposes by the application, such as planning, execution, and reporting.",
+  "entityType": "non_transactional",
+  "category": "reference",
+  "fields": [
+    {
+      "name": "calendar_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Calendar name"
+    },
+    {
+      "name": "calendar_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Placeholder for different calendar types. Values to be defined by customers."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Description of calendar."
+    },
+    {
+      "name": "date",
+      "type": "timestamp",
+      "required": true,
+      "primaryKey": true,
+      "description": "Date associated with each calendar record. Note that time value is intended to be ignored even though it can be entered."
+    },
+    {
+      "name": "year",
+      "type": "int",
+      "required": true,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "day",
+      "type": "int",
+      "required": true,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "week",
+      "type": "int",
+      "required": true,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "month",
+      "type": "int",
+      "required": true,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "is_working",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "is_holiday",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "default": "1900-01-01 00:00:00",
+      "required": false,
+      "primaryKey": true,
+      "description": "Effective start of calendar"
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "default": "9999-12-31 23:59:59",
+      "required": false,
+      "primaryKey": true,
+      "description": "Effective end of calendar"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source of data"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    }
+  ]
+}

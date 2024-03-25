@@ -1,0 +1,86 @@
+{
+  "name": "WorkOrderPlan",
+  "displayName": "work_order_plan",
+  "description": "Provides the supply chain process plan for a work order along with source type and duration to finish each supply chain process.",
+  "entityType": "transactional",
+  "category": "insights",
+  "fields": [
+    {
+      "name": "process_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "This is the work_order idfor Woodside"
+    },
+    {
+      "name": "process_product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID associated with process and product."
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "preferred_source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "whether the product is normally sourced from inventory (i.e. stocked to forecasted) or from direct purchase (for non-stocked products)"
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": false,
+      "description": "material in the work order"
+    },
+    {
+      "name": "business_process_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": false,
+      "description": "business process identifier - PR, PO, RFQ etc. The plan should include both the purchasing and distribution business processes. Known as COG by Woodside."
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "the site that is linked to the business process. This is optional for purchasing process (ex. PO) and mandatory for distribution related processes (ex. Intransit, Pick Pack)"
+    },
+    {
+      "name": "business_process_sequence",
+      "type": "int",
+      "required": true,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "duration",
+      "type": "int",
+      "required": true,
+      "primaryKey": false,
+      "description": "unit in days"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "name": "VendorLeadTime",
+  "displayName": "vendor_lead_time",
+  "description": "Contains the planned and actual lead times from the vendor.",
+  "entityType": "non_transactional",
+  "category": "vendor_management",
+  "fields": [
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "vendor_tpartner_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Trading Partner ID of vendor",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_group_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Vendor lead times can be set at product group level; product level values will overrde these",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product_hierarchy",
+        "field": "id"
+      }
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Vendor lead times can be set at company's site level - these override region or company level values",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "region_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Maps to company's geographical region aka geo_id.\n\nVendor lead times can be set at company's region level - these override company level values",
+      "foreignKey": {
+        "category": "org",
+        "entity": "geography",
+        "field": "id"
+      }
+    },
+    {
+      "name": "planned_lead_time",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Planned lead time from vendor into Company's site"
+    },
+    {
+      "name": "planned_lead_time_dev",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Optional: standard-deviation of lead time, assuming Normal distrbution"
+    },
+    {
+      "name": "actual_lead_time_mean",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Optional: Actual values of lead time computed based on transactional data (mean, standard-deviation, p50 and p90 values). These not only provide a handy comparison, but can also be used for planning or insights. Will need to be updated at periodic intervals for the effective dates\n \nDebate: Should we store this in output table, and report on that? Or make this data available within VLT tables so as not"
+    },
+    {
+      "name": "actual_lead_time_sd",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "actual_p50",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "actual_p90",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Inbound shipping cost from vendor to Company"
+    },
+    {
+      "name": "shipping_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Inbound shipping cost from vendor to Company"
+    },
+    {
+      "name": "cost_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "we_pay",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Whether Company pays for inbound shipping or vendor pays. This is an optional field that is relevant when incoterm is not used on PO.."
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "default": "1900-01-01 00:00:00",
+      "required": false,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "default": "9999-12-31 23:59:59",
+      "required": false,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "sap_eina__infnr",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Number of purchasing info record. Predicate key for SAP mapping. Upsert key for  EINE"
+    }
+  ]
+}

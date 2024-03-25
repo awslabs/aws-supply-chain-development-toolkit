@@ -1,0 +1,195 @@
+{
+  "name": "OutboundShipment",
+  "displayName": "outbound_shipment",
+  "description": "Stores shipment information for outbound orders, including ship date, product, quantity, ship from site, expected delivery date, and actual delivery date.",
+  "entityType": "transactional",
+  "category": "outbound",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Referred by other objects as 'shipment_id' unless explicitly stated"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "cust_order_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "ID of customer order",
+      "foreignKey": {
+        "category": "outbound",
+        "entity": "outbound_order_line",
+        "field": "cust_order_id"
+      }
+    },
+    {
+      "name": "cust_order_line_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Line ID of customer order",
+      "foreignKey": {
+        "category": "outbound",
+        "entity": "outbound_order_line",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "shipped_qty",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity shipped from company to customer. In same UOM as order"
+    },
+    {
+      "name": "cust_shipment_status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Reserved' values for [ASC] 2022: \n\"Cancelled\" (populated in SAP mapping; also used for deleted)\n\"Open\" (not populated in SAP mapping)\n\"Closed\" (not populated in SAP mapping)\n\"InTransit\" (not populated in SAP mapping)\n\"Delivered\" (not populated in SAP mapping)\n\"\": Null is also acceptable; \nUsage is determined by apps and customers\nCustomers can also populate their own values."
+    },
+    {
+      "name": "expected_ship_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date product was expected to ship from company location"
+    },
+    {
+      "name": "actual_ship_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date product was actually shipped from company location"
+    },
+    {
+      "name": "from_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Site\/warehouse where product shipped from",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "to_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Destination site ID for outbound shipments; not expected to match to this company's side_id (as this order is going outside company network).",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "expected_delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when product was expected to be delivered at customer location"
+    },
+    {
+      "name": "actual_delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date when product was actually delivered at customer location"
+    },
+    {
+      "name": "shipping_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Final shipping cost"
+    },
+    {
+      "name": "tracking_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Tracking number associated with shipment"
+    },
+    {
+      "name": "bill_weight",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Shipped weight of product used for billing"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "sap_2lis_08trtlp__vbeln",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Delivery Number. Predicate key for SAP mapping. Upsert key for 2LIS_12_VCITM"
+    },
+    {
+      "name": "sap_2lis_08trtlp__posnr",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Delivery Item Number. Predicate key for SAP mapping. Upsert key for 2LIS_12_VCITM"
+    },
+    {
+      "name": "sap_2lis_08trtlp__tknum",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Shipment Item Number. Predicate key for SAP mapping. Upsert key for 2LIS_08TRTK"
+    }
+  ]
+}
