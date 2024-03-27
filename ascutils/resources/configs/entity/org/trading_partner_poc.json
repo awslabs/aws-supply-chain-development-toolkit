@@ -1,0 +1,77 @@
+{
+  "name": "TradingPartnerPoc",
+  "displayName": "trading_partner_poc",
+  "description": "trading_partner_poc",
+  "entityType": "non_transactional",
+  "category": "org",
+  "fields": [
+    {
+      "name": "tpartner_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Referred to by other objects as 'tpartner_id' unless explicitly stated",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Email of POC"
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "poc_first_name",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "trading partner point person first name"
+    },
+    {
+      "name": "poc_last_name",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "trading partner point person last name"
+    },
+    {
+      "name": "poc_org_unit_name",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "name of team or internal organizational unit"
+    },
+    {
+      "name": "poc_org_unit_description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "AWS profile or description of the team's role in an organization to be shared with the customer to describe their team"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    }
+  ]
+}

@@ -1,0 +1,639 @@
+{
+  "name": "Shipment",
+  "displayName": "shipment",
+  "description": "Stores shipment information like origin, carrier code, ship date, product, quantity, ship from site, expected delivery date, and actual delivery date, or inbound orders (PO,TO etc) including ship date, product, quantity, ship from site, expected delivery date, and actual delivery date.",
+  "entityType": "transactional",
+  "category": "inbound",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Referred by other objects as 'shipment_id' unless explicitly stated"
+    },
+    {
+      "name": "creation_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "packaging_hierarchy_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "supplier_tpartner_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Partner that is sending the shipment. E.g. shipments generated under POs, this will be vendors",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "supplier_description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "customer_description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_from_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "site_id for outbound shipments",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "ship_from_site_description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_from_site_address_1",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_from_site_address_2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_from_site_address_city",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_from_site_address_state",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_from_site_address_country",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_from_site_address_zip",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "site_id for inbound shipments",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "ship_to_site_description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_address_1",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_address_2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_address_city",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_address_state",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_address_country",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "ship_to_site_address_zip",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "origin_port",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Port of Loading"
+    },
+    {
+      "name": "destination_port",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Port of Discharge"
+    },
+    {
+      "name": "transportation_mode",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Air/Ocean/Truck/Rail etc"
+    },
+    {
+      "name": "routing_sequence",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "routing sequence ID from the ASN"
+    },
+    {
+      "name": "routing_description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "carrier_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "SCAC",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "carrier_description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "service_level",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "transportation_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Vessel Code or Trailer number"
+    },
+    {
+      "name": "transportation_description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Vessel Description"
+    },
+    {
+      "name": "conveyance_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Trip number"
+    },
+    {
+      "name": "bill_of_lading_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "master_bill_of_lading_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "carrier_reference_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "shipper_reference_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "equipment_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "equipment_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Carrier Assigned"
+    },
+    {
+      "name": "seal_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "equipment_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "package_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "package_quantity",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "weight_qualifier",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "weight",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "weight_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "volume",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "volume_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "shipment_status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "'Reserved' values for [ASC] 2022: \n\"Cancelled\" (populated in SAP mapping; also used for deleted)\n\"Open\" (not populated in SAP mapping)\n\"Closed\" (not populated in SAP mapping)\n\"InTransit\" (not populated in SAP mapping)\n\"Delivered\" (not populated in SAP mapping)\n\"\": Null is also acceptable; \nUsage is determined by apps and customers\nCustomers can also populate their own values."
+    },
+    {
+      "name": "planned_ship_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "actual_ship_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "planned_delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "actual_delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "carrier_eta_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "latest_milestone",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Text/string field need to capture event/status related to the milestone_date\nE.g. Arrived at consolidation center"
+    },
+    {
+      "name": "latest_milestone_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "incoterms",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "line_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Shipment line ID"
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "tp_product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "upc",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "units_shipped",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "hts_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "order_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Changed from \"order_number_reference\"",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order",
+        "field": "id"
+      }
+    },
+    {
+      "name": "order_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "order_customer_tpartner_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Customer ID of the Order. \nRenamed from order_customer_id"
+    },
+    {
+      "name": "order_supplier_tpartner_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Supplier ID of the Order\nRenamed from order_supplier_id"
+    },
+    {
+      "name": "order_line_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Changed from \"order_line_number_reference\"",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "id"
+      }
+    },
+    {
+      "name": "ship_to_site",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Final ship to location",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "package_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "One shipment can have multiple packages in EDI"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "sap_vttp__vbeln",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Delivery Number. Predicate key for SAP mapping. Upsert key for  LIKP, LIPS"
+    },
+    {
+      "name": "sap_but021_fs__addrnumber",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Address Number. Predicate key for ADRC (for Ship-to Address)"
+    },
+    {
+      "name": "sap_t001w__adrnr",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Address Number. Predicate key for SAP mapping. Upsert key for  ADRC"
+    },
+    {
+      "name": "sap_vttk__bev1_rpmowa",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Vehicle number. Predicate key for SAP mapping. Upsert key for Equi."
+    },
+    {
+      "name": "source_update_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date time stamp of the update made in the source system (SAP etc)."
+    },
+    {
+      "name": "source_event_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of the event created in the source system. Example: PO Receipt, Shipment schedule etc"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source of data"
+    }
+  ]
+}

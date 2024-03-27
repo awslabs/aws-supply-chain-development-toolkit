@@ -1,0 +1,150 @@
+{
+  "name": "ShipmentStop",
+  "displayName": "shipment_stop",
+  "description": "Contains list of shipment stops with corresponding date and time. This field is used when there are multiple stops for shipments.",
+  "entityType": "transactional",
+  "category": "inbound",
+  "fields": [
+    {
+      "name": "shipment_stop_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "shipment_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "shipment",
+        "field": "id"
+      }
+    },
+    {
+      "name": "sequence",
+      "type": "int",
+      "required": false,
+      "primaryKey": false,
+      "description": "Sequence of the shipment"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "planned_arrival_start_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Planned start date and time for the shipment arrival"
+    },
+    {
+      "name": "planned_arrival_end_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Planned end date and time for the shipments arrival"
+    },
+    {
+      "name": "planned_departure_start_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Planned start date and time for the shipment departure"
+    },
+    {
+      "name": "planned_departure_end_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Planned end date and time for the shipment departure"
+    },
+    {
+      "name": "actual_arrival_start_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Actual start date and time for the shipment arrival"
+    },
+    {
+      "name": "actual_arrival_end_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Actual end date and time for the shipments arrival"
+    },
+    {
+      "name": "actual_departure_start_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Actual start date and time for the shipment departure"
+    },
+    {
+      "name": "actual_departure_end_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Actual end date and time for the shipment departure"
+    },
+    {
+      "name": "appoinment_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Appointment number"
+    },
+    {
+      "name": "delivery_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Delivery number of the shipment"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    }
+  ]
+}

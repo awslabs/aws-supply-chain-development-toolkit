@@ -1,0 +1,108 @@
+{
+  "name": "SourcingScheduleDetails",
+  "displayName": "sourcing_schedule_details",
+  "description": "Provides sourcing schedule details. For example, the days in a week, a product be sourced from a vendor.",
+  "entityType": "non_transactional",
+  "category": "planning",
+  "fields": [
+    {
+      "name": "sourcing_schedule_detail_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Sourcing schedule detail ID"
+    },
+    {
+      "name": "sourcing_schedule_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Sourcing schedule ID"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Product ID - to be used if schedule detail is for specific product",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_group_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Product ID - to be used if schedule detail is for product group",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product_hierarchy",
+        "field": "id"
+      }
+    },
+    {
+      "name": "day_of_week",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Day of week when supply schedule is active\nValues can be integer or string:\nSun: 0\nMon: 1\nTue: 2\nWed: 3\nThu: 4\nFri: 5\nSat: 6"
+    },
+    {
+      "name": "week_of_month",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "To be used when ordering X times in a month. To be used in conjunction with day_of_week. If multiple times a month, have multiple rows."
+    },
+    {
+      "name": "time_of_day",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "If supply schedule detail is for a specific time in day, enter that here. Only time value is used."
+    },
+    {
+      "name": "date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "If supply schedule detail is for a specific date, enter that here. Only date value is used"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    }
+  ]
+}

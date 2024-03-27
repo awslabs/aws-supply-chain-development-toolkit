@@ -1,0 +1,304 @@
+{
+  "name": "InventoryPolicy",
+  "displayName": "inventory_policy",
+  "description": "Contains inventory policies such as minimum and maximum safety stock policy, target inventory quantity, minimum or mamaximum order quantity and so on, for product, product-site, and other possible combinations.",
+  "entityType": "non_transactional",
+  "category": "planning",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Referred by other objects as 'policy_id' unless explicitly stated"
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Overrides policies specified for the region for this node in product hiearchy",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Overrides policies specified for the product-group for this node in geo hiearchy",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "segment_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of segment associated with this inventory policy",
+      "foreignKey": {
+        "category": "planning",
+        "entity": "segmentation",
+        "field": "segment_id"
+      }
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Sets default values at company level. Can be overridden at lower granularity",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "product_group_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Sets default values for product group. Can be overridden at lower granularity",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product_hierarchy",
+        "field": "id"
+      }
+    },
+    {
+      "name": "dest_geo_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Sets default values at destination's geo level. Can be overridden at lower granularity",
+      "foreignKey": {
+        "category": "org",
+        "entity": "geography",
+        "field": "id"
+      }
+    },
+    {
+      "name": "vendor_tpartner_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Used when inventory policy needs to vary by Vendor - e.g. weekly for one vendor, monthly for another vendor",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of inventory policy record - e.g. on-hold, active.\nUsage is determined by apps and customers\nCustomers can also populate their own values."
+    },
+    {
+      "name": "ss_policy",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Which safety stock policy is to be followed. Each is associated with corresponding data\n1. Abs_level: Uses units specified in min/max safety stock (SS). Source will be customer system or external tool. Ordering will be suggested whenever inventory falls below min SS leve\n2. DOC_dem: Uses days of cover computed from historical demand as target level of inventory, \n3. DOC_fcst: Uses days of cover computed from forecast as target level of inventory\n4. sl: Targets inventory between min and max service level for in-stock percentages; E.g. if min/max service level is 50% and 90%, ordering will be done to maintain inventory between these percentiles of forecast over plan horizon. \n5. sl_fr: Targets inventory between min and max service level for fill-rate percentages; E.g. if min/max service level is 50% and 90%, ordering will be done to maintain inventory between these percentiles of forecast over plan horizon.\n6. Future: eco_sl: Target inventory level determined by economic value - cost of under-stock / (cost of under-stock+cost of over-stock). This needs economic value of each item being overstock and understock"
+    },
+    {
+      "name": "fallback_policy_1",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Fallback inventory policy"
+    },
+    {
+      "name": "repl_interval",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Specifies the replenishment interval - e.g. daily, weekly, monthly. Future enhancements will include day of week"
+    },
+    {
+      "name": "min_safety_stock",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "For safety stock policy \"Abs_level\" - this is absolute value of minimum safety stock level"
+    },
+    {
+      "name": "max_safety_stock",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "For safety stock policy \"Abs_level\" - this is absolute value of maximum safety stock level"
+    },
+    {
+      "name": "min_inventory_qty",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Minimum inventory level quantity threshold"
+    },
+    {
+      "name": "max_inventory_qty",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Maximum inventory level quantity threshold"
+    },
+    {
+      "name": "target_inventory_qty",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Target inventory level quantity"
+    },
+    {
+      "name": "woc_limit",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Weeks of cover limit\nTo be deprecated in favor of min/max days of cover limits"
+    },
+    {
+      "name": "max_doc_limit",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "For safety stock policies \"DOC_dem\" and \"DOC_fcst\", provides the maximum days of cover value"
+    },
+    {
+      "name": "min_doc_limit",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "For safety stock policies \"DOC_dem\" and \"DOC_fcst\", provides the minimum days of cover value"
+    },
+    {
+      "name": "target_doc_limit",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "permitted_var",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "This is used for all policies where deviation from min/max/target is allowed. Provides the fractional deviation allowed. e.g. 0.2 means that 20% deviation from target level is allowed. It may also be used as an adjustment to target level (e.g. 0.2 can be used to increase the absolute max safety stock value by 20%)"
+    },
+    {
+      "name": "min_sl",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "This is used for safety stock policy 'sl'. Provides min service level (SL) - defined as forecast at the SL percentile for plan horizon at SL percentile; Plan horizon = lead time at SL percentile + repl_interval\n\nE.g. if min_sl is 50%, and P50 forecast is 100/week throughtout the horizon, P50 lead time is 7 days, replenishment interval is 7 days - then min_sl is P50 forecast (100/wk) over P50 lead time (7 days) + replenishment time (7 days) = 200 units"
+    },
+    {
+      "name": "target_sl",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "max_sl",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Similar to min_sl, but defines max service level."
+    },
+    {
+      "name": "qty_uom",
+      "type": "string",
+      "default": "Eaches",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity UOM associated with this inventory policy"
+    },
+    {
+      "name": "min_order_qty",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Minimum order quantity"
+    },
+    {
+      "name": "max_order_qty",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Maximum order quantity"
+    },
+    {
+      "name": "order_qty_multiple",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Order quantity computed in multiples of this value"
+    },
+    {
+      "name": "holding_cost_percent",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Annualized holding cost in percent. To be used to calculate holding cost of inventory\nTypically same value is used at country level."
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "default": "1900-01-01 00:00:00",
+      "required": false,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "default": "9999-12-31 23:59:59",
+      "required": false,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "salvage_value_percentage",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Product cost that we can expect to recover at end of Long Term Horizon."
+    }
+  ]
+}

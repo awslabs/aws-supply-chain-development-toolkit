@@ -1,0 +1,142 @@
+{
+  "name": "ShipmentStopOrder",
+  "displayName": "shipment_stop_order",
+  "description": "Contains list of orders picked and dropped per shipment stop.",
+  "entityType": "transactional",
+  "category": "inbound",
+  "fields": [
+    {
+      "name": "shipment_stop_order_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Key field"
+    },
+    {
+      "name": "shipment_stop_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "shipment_stop",
+        "field": "shipment_stop_id"
+      }
+    },
+    {
+      "name": "shipment_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "shipment",
+        "field": "id"
+      }
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "inbound_order_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "order_id"
+      }
+    },
+    {
+      "name": "inbound_order_line_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line",
+        "field": "id"
+      }
+    },
+    {
+      "name": "inbound_order_line_schedule_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order_line_schedule",
+        "field": "id"
+      }
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "'Pickup' or 'Dropoff'"
+    },
+    {
+      "name": "quantity",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity associated with action and order"
+    },
+    {
+      "name": "quantity_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    }
+  ]
+}

@@ -1,0 +1,408 @@
+{
+  "name": "InboundOrderLine",
+  "displayName": "inbound_order_line",
+  "description": "Stores line level information for inbound_order, including product_id, and quantity.",
+  "entityType": "transactional",
+  "category": "inbound",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Order line ID is not required - an order product can be specfied by order ID, company and product ID"
+    },
+    {
+      "name": "order_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Order line is defined by combination of order, company and product",
+      "foreignKey": {
+        "category": "inbound",
+        "entity": "inbound_order",
+        "field": "id"
+      }
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "tpartner_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "line_creation_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_group_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product_hierarchy",
+        "field": "id"
+      }
+    },
+    {
+      "name": "supplier_product_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Product number used by supplier"
+    },
+    {
+      "name": "order_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Certain order types do not have header and line in SAP - only line. E.g. transfer order, manufacturing order. By adding order_type to line, we do not have to create a dummy header.\nWe call it order_type and not order_line_type, because we are capturing what type of ‘order’ it is at the line level.\n\n'Reserved' values for ASC 2022: \n“PO\": Purchase Order\n\"TO\": Transfer Order\n\"BO\": Blanket Order\n\"CO\": Consumption Order\n\"PR\": Purchase Requisition\n\"RFQ\": Request for Quote\n\n\"\": Null is also acceptable; \nUsage is determined by apps and customers\nCustomers can also populate their own values."
+    },
+    {
+      "name": "external_line_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Line number referred to in customer's system"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of line (e.g. submitted, confirmed)\n\n'Reserved' values for ASC 2022: \n\"Cancelled\" \n\"Open\" \n\"Closed\" \n\"InTransit\" \n\"Confirmed\" \n\"\": Null is also acceptable; \nUsage is determined by apps and customers\nCustomers can also populate their own values."
+    },
+    {
+      "name": "from_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Relevant for orders where origin is known - e.g. transfer orders, or replenishment from company's DC to company's store",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "to_site_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Site into which order will arrive.",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "vendor_status",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Status of the line. E.g. NYP (not yet published, or on-order), BO (Back-order)"
+    },
+    {
+      "name": "cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Cost of product in company's currency, after discount"
+    },
+    {
+      "name": "cost_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Cost UOM in company's currency"
+    },
+    {
+      "name": "submitted_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Cost of product at time of submission in company's currency"
+    },
+    {
+      "name": "submitted_cost_vendor",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Cost of product at time of submission in vendor's currency"
+    },
+    {
+      "name": "shipping_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "tax_cost",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "quantity_submitted",
+      "type": "double",
+      "required": true,
+      "primaryKey": false,
+      "description": "Quantity submitted to vendor (for POs), or quantity for transfer (for transfer orders)"
+    },
+    {
+      "name": "quantity_confirmed",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity confirmed (e.g. by vendor)"
+    },
+    {
+      "name": "quantity_received",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity received into inventory at destination across all schedules"
+    },
+    {
+      "name": "quantity_uom",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Quantity unit of measure for the order-line. Same UOM is assumed for schedule."
+    },
+    {
+      "name": "submitted_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date and time when order line was submitted to vendor"
+    },
+    {
+      "name": "expected_delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "confirmation_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date and time when order was confirmed by vendor. Data is relevant at line level - customer may give rolled up value here"
+    },
+    {
+      "name": "earliest_ship_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Earliest date and time when vendor shipped products for this order-line"
+    },
+    {
+      "name": "latest_ship_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Latest date and time when vendor shipped products for this order-line"
+    },
+    {
+      "name": "earliest_delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Earliest date and time when vendor would deliver products in this order-line to company location."
+    },
+    {
+      "name": "latest_delivery_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Latest date and time when vendor would deliver products in this order-line to company location."
+    },
+    {
+      "name": "incoterm",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "3 letter incoterm code"
+    },
+    {
+      "name": "incoterm2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Place of ownership transfer"
+    },
+    {
+      "name": "incoterm_location_1",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Incoterm location 1. Can be a site_id or the location used on order/EDI"
+    },
+    {
+      "name": "incoterm_location_2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Incoterm location 2. Can be a site_id or the location used on order/EDI"
+    },
+    {
+      "name": "requisition_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Requisition number"
+    },
+    {
+      "name": "order_receive_date",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date and time when order-line is received into company's inventory across all schedules"
+    },
+    {
+      "name": "reservation_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Reservation ID associated with the line",
+      "foreignKey": {
+        "category": "planning",
+        "entity": "reservation",
+        "field": "reservation_id"
+      }
+    },
+    {
+      "name": "reference_object",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "If record is created by or in response to another object / entity, then that entity name. E.g. inbound_order, outbound_order"
+    },
+    {
+      "name": "reference_object_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "If activity is created by or in response to a specific type of object - then specify the type here. E.g. PO (Purchase Order) vs TO (Transfer Order)"
+    },
+    {
+      "name": "reference_object_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of associated reference object"
+    },
+    {
+      "name": "reference_detail_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of associated reference object ID's detail/line, if any"
+    },
+    {
+      "name": "inbound_order_line_url",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "URL to access inbound order line record in source system"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Source of data"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    },
+    {
+      "name": "sap_lips__vbeln",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Delivery Number. Predicate key for SAP mapping. Upsert key for  VTTP, LIKP"
+    },
+    {
+      "name": "sap_vttp__tknum",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Shipment Number. Predicate key for SAP mapping. Upsert key for  VTTK"
+    },
+    {
+      "name": "source_update_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Date time stamp of the update made in the source system (SAP etc)."
+    },
+    {
+      "name": "source_event_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "ID of the event created in the source system. Example: PO Receipt, Shipment schedule etc"
+    }
+  ]
+}

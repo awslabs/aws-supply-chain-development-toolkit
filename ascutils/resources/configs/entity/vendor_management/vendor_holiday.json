@@ -1,0 +1,82 @@
+{
+  "name": "VendorHoliday",
+  "displayName": "vendor_holiday",
+  "description": "Displays information on vendor outages due to holidays and shutdowns.",
+  "entityType": "non_transactional",
+  "category": "vendor_management",
+  "fields": [
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "vendor_tpartner_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Trading Partner ID of vendor",
+      "foreignKey": {
+        "category": "org",
+        "entity": "trading_partner",
+        "field": "id"
+      }
+    },
+    {
+      "name": "outage_start_date",
+      "type": "timestamp",
+      "required": true,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "outage_end_date",
+      "type": "timestamp",
+      "required": true,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "outage_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "comment",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    }
+  ]
+}

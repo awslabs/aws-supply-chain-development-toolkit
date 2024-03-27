@@ -1,0 +1,126 @@
+{
+  "name": "Segmentation",
+  "displayName": "segmentation",
+  "description": "Used to store segments. Segments are used in conjunction with product, site, and effective dates for uniqueness. For example, HV1 for High Value, HLW for Halloween Products, seasonal, volatile and so on.",
+  "entityType": "non_transactional",
+  "category": "planning",
+  "fields": [
+    {
+      "name": "segment_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Identifier for segment. Can be defined by app, or by customer. Will be used in conjunction with product, site and effective dates for uniqueness. E.g. HV1 for HighValue, HLW for Haloween products (seasonal, volatile) and so on."
+    },
+    {
+      "name": "creation_date",
+      "type": "timestamp",
+      "required": true,
+      "primaryKey": true,
+      "description": "Date-time when segmentation was created"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "site_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Overrides policies specified for the region for this node in product hiearchy",
+      "foreignKey": {
+        "category": "network",
+        "entity": "site",
+        "field": "id"
+      }
+    },
+    {
+      "name": "product_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Overrides policies specified for the product-group for this node in geo hiearchy",
+      "foreignKey": {
+        "category": "product",
+        "entity": "product",
+        "field": "id"
+      }
+    },
+    {
+      "name": "segment_description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Description of segment"
+    },
+    {
+      "name": "segment_type",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Type of segmentation - e.g. value based, demand variability based, demand speed based"
+    },
+    {
+      "name": "segment_value",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": "Metric associated with segment, that is calculated at time of generating segment. Value depends on segment_type"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Information about segment creator"
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "default": "1900-01-01 00:00:00",
+      "required": false,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "default": "9999-12-31 23:59:59",
+      "required": false,
+      "primaryKey": true,
+      "description": ""
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was created"
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": "Internal audit field - stores when the record was last updated"
+    }
+  ]
+}

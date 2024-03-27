@@ -1,0 +1,70 @@
+{
+  "name": "ReferenceField",
+  "displayName": "reference_field",
+  "description": "Contains mapping of any entity-field-value combination to a corresponding description, such as mapping specific inbound_order status code to status description.",
+  "entityType": "non_transactional",
+  "category": "reference",
+  "fields": [
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "object_name",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "E.g. \n1. Sites, \n2. TransportationLanes\n3. InboundOrders"
+    },
+    {
+      "name": "object_field",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "E.g. \n1. site_type\n2. trans_mode\n3. order_type"
+    },
+    {
+      "name": "object_field_value",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "E.g. \n1. for site_type: 01\n2. trans_mode: 01\n3. order_type: 01"
+    },
+    {
+      "name": "object_field_desc",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "E.g. \n1. for site_type: 01: DC\n2. trans_mode: 01: Surface\n3. order_type: 01: PO"
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    }
+  ]
+}

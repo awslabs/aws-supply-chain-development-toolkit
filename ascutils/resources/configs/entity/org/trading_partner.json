@@ -1,0 +1,191 @@
+{
+  "name": "TradingPartner",
+  "displayName": "trading_partner",
+  "description": "Contains the partners that have trading relationship with your company, such as vendors, 3PLs, channel partners, or distributors.",
+  "entityType": "non_transactional",
+  "category": "org",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Referred to by other objects as 'tpartner_id' unless explicitly stated"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "",
+      "foreignKey": {
+        "category": "org",
+        "entity": "company",
+        "field": "id"
+      }
+    },
+    {
+      "name": "connection_id",
+      "type": "string",
+      "required": true,
+      "primaryKey": true,
+      "description": "Unique identifier for the data source (i.e. connection). Auto populated by ASC."
+    },
+    {
+      "name": "tpartner_type",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Type of partner: e.g. Vendor, Channel Partner, 3PL\n\nReserved values for [ASC] 2022\n\"Customer\": (will not be mapped from SAP in 2022)\n\"Vendor\": (will be mapped from SAP in 2022)\n\"Carrier\": (will not be mapped from SAP in 2022)\n\"ForwardingAgent\": (will not be mapped from SAP in 2022)\n\"3PL\": (will not be mapped from SAP in 2022)\n\"4PL\": (will not be mapped from SAP in 2022)\n\"Contractor\": Generic trading partner : (will not be mapped from SAP in 2022)\n\"Bank\": (will not be mapped from SAP in 2022)\n\"FinancialPartner\": (will not be mapped from SAP in 2022)\n\"Broker\": (will not be mapped from SAP in 2022)\n\"GovtAgency\": (will not be mapped from SAP in 2022)\n\"Approver\": (will not be mapped from SAP in 2022)\n\"VAN\": EDI message provider: (will not be mapped from SAP in 2022)\n\"IT\": IT provider (will not be mapped from SAP in 2022)\n\n\"\": Null is also acceptable; usage is determined by apps and customers\n\nCustomers can also populate their own values."
+    },
+    {
+      "name": "geo_id",
+      "type": "string",
+      "default": "SCN_RESERVED_NO_VALUE_PROVIDED",
+      "required": false,
+      "primaryKey": true,
+      "description": "Optional - Region of company that trading partner is associated with",
+      "foreignKey": {
+        "category": "org",
+        "entity": "geography",
+        "field": "id"
+      }
+    },
+    {
+      "name": "eff_start_date",
+      "type": "timestamp",
+      "default": "1900-01-01 00:00:00",
+      "required": false,
+      "primaryKey": true,
+      "description": "When the TP relationship started. In future we can allow multiple depending on use case"
+    },
+    {
+      "name": "eff_end_date",
+      "type": "timestamp",
+      "default": "9999-12-31 23:59:59",
+      "required": false,
+      "primaryKey": true,
+      "description": "When the TP relationship ended. In future we can allow multiple depending on use case"
+    },
+    {
+      "name": "is_active",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "High level indicator of whether TP is active or inactive at the moment"
+    },
+    {
+      "name": "address_1",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "address_2",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "address_3",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "city",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "state_prov",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "postal_code",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "phone_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "time_zone",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "latitude",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "longitude",
+      "type": "double",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_creation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "db_updation_dttm",
+      "type": "timestamp",
+      "required": false,
+      "primaryKey": false,
+      "description": ""
+    },
+    {
+      "name": "os_id",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "organizational identifier issued by Open Supplier Hub"
+    },
+    {
+      "name": "duns_number",
+      "type": "string",
+      "required": false,
+      "primaryKey": false,
+      "description": "Unique nine-digit identification number provided by Dun & Bradstreet (D&B)"
+    }
+  ]
+}
