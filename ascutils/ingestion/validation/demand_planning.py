@@ -18,7 +18,7 @@ DEMAND_PLANNING_FEATURES = [
 
 
 def _validate_demand_planning(data: BaseData, target_features: List[Feature]) -> List[Record]:
-    if list(set(target_features) & set(DEMAND_PLANNING_FEATURES)) == 0:
+    if len(list(set(target_features) & set(DEMAND_PLANNING_FEATURES))) == 0:
         return []
 
     records = [
@@ -55,6 +55,9 @@ def _validate_max_forecast_horizon(data: BaseData) -> Optional[Record]:
 
     copy_df = outbound_order_line.copy(deep=True)
     copy_df['order_date'] = pd.to_datetime(copy_df['order_date'], errors='coerce')
+    copy_df = copy_df.dropna(subset=["order_date"])
+    if copy_df.shape[0] == 0:
+        return None
     min_df = copy_df[["product_id", "order_date"]].groupby("product_id").min().reset_index()
     max_df = copy_df[["product_id", "order_date"]].groupby("product_id").max().reset_index()
     merged_df = min_df.merge(max_df, on='product_id')

@@ -61,6 +61,8 @@ def from_path(path: str = ".") -> BaseData:
         if entity_name:
             print(f"Reading '{file_path}'")
             setattr(data, entity_name, _read_entity(file_path, entity_name, config))
+        else:
+            print(f"Skipping '{file_path}' because we couldn't match it to any entity")
     return data
 
 
@@ -76,7 +78,7 @@ def from_dict(data_dict: Dict[str, DataFrame]) -> BaseData:
 def _read_entity(path: Path, entity_name: str, config: ReadConfig) -> DataFrame:
     options = config.default if entity_name not in config.entities else config.entities[entity_name]
 
-    df = pd.read_csv(path, dtype=str, sep=options.delimiter)
+    df = _read_csv(path=path, options=options)
     df.columns = [column.lower() for column in df.columns]
 
     if options.remove_special_chars:
@@ -87,6 +89,16 @@ def _read_entity(path: Path, entity_name: str, config: ReadConfig) -> DataFrame:
         )
 
     return df
+
+
+def _read_csv(path: Path, options: ReadConfigOptions) -> DataFrame:
+    try:
+        return pd.read_csv(path, dtype=str, sep=options.delimiter)
+    except UnicodeDecodeError:
+        print("File does not have valid UTF-8 encoding, trying latin1 encoding...", end="")
+        df = pd.read_csv(path, dtype=str, sep=options.delimiter, encoding='latin1')
+        print("File decoded successfully")
+        return df
 
 
 def _get_read_config(path: str) -> ReadConfig:

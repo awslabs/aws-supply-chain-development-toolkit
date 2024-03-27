@@ -21,7 +21,7 @@ INSIGHTS_FEATURES = [
 
 
 def _validate_insights(data: BaseData, target_features: List[Feature]) -> List[Record]:
-    if list(set(target_features) & set(INSIGHTS_FEATURES)) == 0:
+    if len(list(set(target_features) & set(INSIGHTS_FEATURES))) == 0:
         return []
 
     records = [
@@ -125,7 +125,7 @@ def _validate_inventory_level_snapshot_date_is_valid_and_before_today(data: Base
     max_snapshot_date = inventory_level_df["snapshot_date"].max()
     today = datetime.now()
     two_days_ago = today - timedelta(days=2)
-    is_in_past_two_days = two_days_ago <= max_snapshot_date <= today
+    is_in_past_two_days = two_days_ago <= max_snapshot_date.replace(tzinfo=None) <= today
 
     if is_in_past_two_days:
         return None
